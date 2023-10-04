@@ -9,6 +9,10 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
 
+*{
+  scroll-behavior: smooth;
+}
+
 input:-webkit-autofill{
     -webkit-text-fill-color: white !important;
 }

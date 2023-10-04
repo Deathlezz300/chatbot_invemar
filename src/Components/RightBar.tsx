@@ -1,4 +1,5 @@
-import React from 'react'
+
+import { useChat } from '../Hooks/useChat'
 import { useForm } from '../Hooks/useForm'
 import lupa from '../assets/images/lupa.webp'
 import { Book } from './Book'
@@ -11,6 +12,8 @@ export const RightBar = () => {
   
     const {buscador,onInputChange}=useForm(initialState);
   
+    const {libros}=useChat();
+
     return (
     <section className='flex flex-col w-[20%] items-center pt-4 bg-[#001529] gap-2 overflow-hidden'>
         <h3 className='font-roboto text-white font-bold text-xl'>Libros disponibles</h3>
@@ -22,9 +25,11 @@ export const RightBar = () => {
             </button>
         </div>
         <div className='pt-3 gap-2 w-[100%] flex flex-col justify-center items-center'>
-            <Book nombre='El libro del sapo'/>
-            <Book nombre='El libro del cachon'/>
-            <Book nombre='El libro del cacho contentos y sapos'/>
+           {
+                libros.map((libro)=>{
+                    return <Book key={libro.id} id={libro.id} nombre={libro.title}/>
+                })
+           }
         </div>
     </section>
   )

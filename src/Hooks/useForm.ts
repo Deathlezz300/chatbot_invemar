@@ -12,9 +12,14 @@ export const useForm=<T extends object>(initalState:T)=>{
         });
     }
 
+    const onResetValues=()=>{
+        SetForm(initalState);
+    }
+
     return{
         ...form,
-        onInputChange
+        onInputChange,
+        onResetValues
     }
 
 }
