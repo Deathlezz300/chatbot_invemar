@@ -1,6 +1,8 @@
 import {FC} from 'react'
 import logo from '../assets/images/logo.webp'
 import { mensaje } from '../interfaces/ChatInterfaces';
+import { DotLoader } from './DotLoader';
+import '../index.css'
 
 export const MessageBox:FC<mensaje> = ({id,messageOwner,texto}) => {
   return (
@@ -12,7 +14,12 @@ export const MessageBox:FC<mensaje> = ({id,messageOwner,texto}) => {
                 :''
             }
             <span className={`font-roboto p-2 px-4 border max-w-[48%] font-semibold rounded-lg shadow-sm 
-            ${messageOwner==='chatbot' ? 'bg-white' : ' bg-[#3366CC] text-white'}`}>{texto}</span>
+             ${messageOwner==='chatbot' ? 'bg-white' : ' bg-[#3366CC] text-white'} efecto_escritura break-all`} 
+            style={{animation:messageOwner!='user' && texto.length>0 ? `teclear .5s steps(${texto.length})` : ''}}>
+            {
+              texto.length<=0 ? <DotLoader/> : texto
+            }
+            </span>
         </div>
     </div>
   )
