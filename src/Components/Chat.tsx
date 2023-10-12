@@ -7,7 +7,7 @@ import { useEffect,useRef } from "react";
 
 export const Chat = () => {
   
-  const {showLetters}=useUI();
+  const {showLetters,setShowLetters}=useUI();
 
   const {mensajes}=useChat();
 
@@ -16,6 +16,9 @@ export const Chat = () => {
   useEffect(()=>{
     if(boxRef.current){
       boxRef.current.scrollTop=boxRef.current.scrollHeight;
+    }
+    if(mensajes.length>0){
+      setShowLetters();
     }
   },[mensajes])
 

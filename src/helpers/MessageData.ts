@@ -13,3 +13,10 @@ export const DataMessages:string[]=
   "¿Necesitas información sobre un producto o servicio en particular?",
   "No dudes en preguntar. Estoy programado para responder tus consultas."
 ]
+
+export const DataMessageQuestions: string[] = [
+  'Por favor, indícame el subtema de la información que deseas conocer.',
+  'Proporciona el nombre del autor del libro que deseas consultar.',
+  'Dame el nombre del lugar donde se realizó el evento.',
+  'Por favor seleccione alguno de los libros encontrados al lado derecho'
+];

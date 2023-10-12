@@ -11,9 +11,9 @@ const initalState={
 
 export const BoxArea = () => {
 
-  const {autoResizeTextArea,showOverflow,setShowLetters}=useUI();
+  const {autoResizeTextArea,showOverflow}=useUI();
 
-  const {onAddMessage}=useChat();
+  const {onAddMessage,indice,activeBookTalk,getRelatedBooks}=useChat();
 
   const  ButtonRef:RefObject<HTMLButtonElement>=useRef(null);
 
@@ -24,13 +24,15 @@ export const BoxArea = () => {
     onInputChange(evento)
   }
  
-  const onSubmitMessage=(evento:FormEvent<HTMLFormElement>)=>{
-    if(data.length>0){
+
+  const onSubmitMessage=async(evento:FormEvent<HTMLFormElement>)=>{
+    
       evento.preventDefault();
-      setShowLetters();
+
+      if(indice>3) await getRelatedBooks();
+
       onAddMessage(data);
       onResetValues();
-    }
   }
 
   return (
@@ -39,7 +41,7 @@ export const BoxArea = () => {
         className={`w-[95%] outline-none resize-none h-max-[98px] ${showOverflow ? 'overflow-y-auto' : 'overflow-y-hidden' }
         font-medium font-roboto`}></textarea>
         <button ref={ButtonRef} type='submit' className='disabled:opacity-50 right-3 absolute enabled:opacity-100 enabled:cursor-pointer disabled:cursor-not-allowed border-black cursor-pointer' 
-          disabled={data.length>0 ?  false : true}>
+          disabled={data.length<=0 || (indice>3 && Object.keys(activeBookTalk).length<=0) ?  true : false}>
           <img src={flecha} className='w-[23px]' alt="" />
         </button>
     </form>
