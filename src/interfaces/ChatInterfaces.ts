@@ -10,3 +10,8 @@ export interface IBook{
 }
 
 type IOwner= 'user' | 'chatbot';
+
+export interface InputI{
+    placeholder:string,
+    nombre:string
+}

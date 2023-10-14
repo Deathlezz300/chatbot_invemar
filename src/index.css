@@ -84,3 +84,49 @@ input:-webkit-autofill{
     clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
   }
 }
+
+.input-group{
+  width: 23%;
+  min-width: 280px;
+  position: relative;
+}
+
+.input-form{
+  outline: none;
+  background: white;
+  border: none;
+  border-radius: 10px;
+  font-size: .9rem;
+  color: #353849;
+  font-weight: 600;
+  transition: .2s ease-in-out;
+  border: .2px solid #5d81c7;
+}
+
+.label-input{
+  width: fit-content;
+  padding-left: .2rem;
+  padding-right: .2rem;
+  text-align: left;
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  pointer-events: none;
+  color: #5d81c7;
+  transition: .2s ease-in-out;
+  font-weight: 800;
+  border-radius: 100%;
+}
+
+.input-form:focus + .label-input,
+.input-form:not(:placeholder-shown) +
+.label-input{
+  top: -10px;
+  background: linear-gradient(180deg, rgb(243,244,246) 39%, rgb(255, 255, 255) 60%);
+  color: #3366CC;
+}
+
+.input-form:focus{
+  border: 2px solid #3366CC;
+  z-index: -1;
+}

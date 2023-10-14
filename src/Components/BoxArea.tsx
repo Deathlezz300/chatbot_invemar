@@ -29,7 +29,7 @@ export const BoxArea = () => {
     
       evento.preventDefault();
 
-      if(indice>3) await getRelatedBooks();
+      if(indice>3 && Object.keys(activeBookTalk).length<=0) await getRelatedBooks();
 
       onAddMessage(data);
       onResetValues();
