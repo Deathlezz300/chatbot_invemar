@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom"
 import '../index.css'
 import { DataInputs, InputData} from "../helpers/DataInputs";
 import {useForm} from 'react-hook-form'
+import { Loader } from "../Components/Loader";
+import { useChat } from "../Hooks/useChat";
 
 export const EditPage = () => {
 
@@ -10,10 +12,14 @@ export const EditPage = () => {
 
   const {register,handleSubmit}=useForm();
 
+  const {status}=useChat();
+
   const onSubmitMetadatos=(data:any)=>{
 
     console.log(data)
   }
+
+  if(status) return <Loader/>;
 
   return (
     <form onSubmit={handleSubmit(onSubmitMetadatos)} className="w-[100%] flex flex-col gap-2 min-h-screen bg-[#F3F4F6] items-center justify-center">

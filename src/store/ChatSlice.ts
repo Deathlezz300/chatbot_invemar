@@ -7,7 +7,7 @@ interface IEdit{
     texto:string
 }
 
-const firstMessage:mensaje={
+export const firstMessage:mensaje={
     id:1,
     texto:'Hola,soy el chatbot de invemar, por favor proporcioname el tema general de lo que quieres buscar',
     messageOwner:'chatbot'
@@ -20,7 +20,7 @@ export const ChatSlice = createSlice({
         libros:BookData,
         activeBookTalk:{} as IBook,
         status:false,
-        answersContext:[] as string[]
+        answersContext:[] as string[],
     },
     reducers: {
          addMessage:(state,{payload}:{payload:mensaje})=>{
@@ -49,10 +49,13 @@ export const ChatSlice = createSlice({
          },
          addAnswerContex:(state,{payload}:{payload:string})=>{
             state.answersContext.push(payload);
-         }
+         },
+         deleteAnswersContext:(state)=>{
+            state.answersContext=[];
+         },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { addMessage,setBooks,EditMessage,SetBookToTalk,changeStatus,addAnswerContex } = ChatSlice.actions;
+export const { addMessage,setBooks,EditMessage,SetBookToTalk,changeStatus,addAnswerContex,deleteAnswersContext } = ChatSlice.actions;

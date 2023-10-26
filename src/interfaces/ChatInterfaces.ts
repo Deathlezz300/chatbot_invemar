@@ -5,9 +5,11 @@ export interface mensaje{
 }
 
 export interface IBook{
-    id:number,
-    title:string
+    Id:string,
+    Titulo:string,
+    context?:string
 }
+
 
 type IOwner= 'user' | 'chatbot';
 
