@@ -15,5 +15,6 @@ type IOwner= 'user' | 'chatbot';
 
 export interface InputI{
     placeholder:string,
-    nombre:string
+    nombre:string,
+    tipo:'texto' | 'fecha'
 }

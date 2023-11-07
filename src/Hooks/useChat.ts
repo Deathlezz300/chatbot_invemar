@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IBook, mensaje } from '../interfaces/ChatInterfaces';
 import { RootState } from "../store/store";
-import { EditMessage, SetBookToTalk, addAnswerContex, addMessage, changeStatus, deleteAnswersContext, firstMessage, setBooks } from "../store/ChatSlice";
+import { EditMessage, SetBookToTalk, addAnswerContex, addMessage, changeStatus, deleteAnswersContext, firstMessage, onSetIndice, setBooks, setMetadaDataBook } from "../store/ChatSlice";
 import { DataMessageQuestions } from "../helpers/MessageData";
 import ChatApi from "../api/ChatApi";
-import {useState} from 'react'
 import { getBaseObjects } from "../helpers/getBaseObjects";
 import { getContextBook, getMessageFromBot, relatedBooks } from "../services/getMessageFromBot";
 import { baseApiUrl } from "../helpers/BookData";
+import { ordenarLlegadaMetada, ordernarMetaDataSalida } from '../helpers/formatMetaData';
 
 interface IUsechat{
     mensajes:mensaje[],
@@ -15,19 +15,19 @@ interface IUsechat{
     onAddMessage:(texto:string)=>void,
     status:boolean,
     indice:number,
-    onUploadBook:(file:File)=>void,
+    onUploadBook:(file:File)=>Promise<boolean>,
     activeBookTalk:IBook,
     onSetBookToTalk:(id:string,title:string)=>void,
     onRestartIndice:()=>void,
+    metadaDataBook:any,
+    onSaveMetaData:(Metadata:any)=>Promise<boolean>
 }
 
 export const useChat=():IUsechat=>{
 
-    const {mensajes,libros,status,activeBookTalk,answersContext}=useSelector((state:RootState)=>state.Chat);
+    const {mensajes,libros,status,activeBookTalk,answersContext,indice,metadaDataBook}=useSelector((state:RootState)=>state.Chat);
 
     const dispatch=useDispatch();
-
-    const [indice,SetState]=useState<number>(0);
 
     const onAddMessage=async(texto:string)=>{
 
@@ -44,7 +44,7 @@ export const useChat=():IUsechat=>{
             },700)
 
 
-            SetState((x)=>x+1);
+            
 
             if(indice+1===4){
 
@@ -55,6 +55,8 @@ export const useChat=():IUsechat=>{
 
                 dispatch(setBooks([...libros,...Books]))
             }
+
+            dispatch(onSetIndice(indice+1))
 
             return;
         }
@@ -71,7 +73,7 @@ export const useChat=():IUsechat=>{
     }
 
 
-    const onUploadBook=async(archivo:File)=>{
+    const onUploadBook=async(archivo:File):Promise<boolean>=>{
 
         dispatch(changeStatus());
         try{
@@ -85,10 +87,18 @@ export const useChat=():IUsechat=>{
                 }
             })
 
-            console.log(data);
+
+            const ordenada=ordenarLlegadaMetada(data);
+            
+
+            dispatch(setMetadaDataBook(ordenada));
+
+            return true;
+            
 
         }catch(error){
             console.log(error);
+            return false
         }finally{
             dispatch(changeStatus());
         }
@@ -114,20 +124,45 @@ export const useChat=():IUsechat=>{
         }
 
 
-        SetState(4);
+        dispatch(onSetIndice(4))
         dispatch(SetBookToTalk(BookTalk));
         dispatch(addMessage(messaToStorageChabot))
         dispatch(changeStatus());
 
     }
 
+    const onSaveMetaData=async(Metadata:any):Promise<boolean>=>{
+
+        dispatch(changeStatus());
+        try{
+
+            const data=ordernarMetaDataSalida(Metadata);
+
+            console.log(data);
+
+            const res=await ChatApi.post(`${baseApiUrl}/saveMetadata`,data);
+
+            console.log(res.data);
+
+            return true;
+
+        }catch(error){
+            console.log(error);
+            return false;
+        }finally{
+            dispatch(changeStatus())
+        }
+
+    }
+
 
     const onRestartIndice=()=>{
-        SetState((x)=>0);
         const messageLast={...firstMessage}
         messageLast.id=mensajes[mensajes.length-1].id+1;
         dispatch(deleteAnswersContext());
         dispatch(addMessage(messageLast));
+        dispatch(setBooks([libros[0]]));
+        dispatch(onSetIndice(0));
     }
 
 
@@ -140,7 +175,9 @@ export const useChat=():IUsechat=>{
         indice,
         activeBookTalk,
         onSetBookToTalk,
-        onRestartIndice
+        onRestartIndice,
+        metadaDataBook,
+        onSaveMetaData
     }
 
 }

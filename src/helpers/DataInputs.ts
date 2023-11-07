@@ -5,131 +5,163 @@ export const DataInputs:InputI[]=
 [
     {
         placeholder:'Autor',
-        nombre:'author'
+        nombre:'autor',
+        tipo:'texto'
     },
     {
         placeholder:'Abstract',
-        nombre:'Abstract'
+        nombre:'resumen',
+        tipo:'texto'
     },
     {
         placeholder:'Refeered',
-        nombre:'refeered'
+        nombre:'revisado',
+        tipo:'texto'
     },
     {
         placeholder:'Otros',
-        nombre:'other'
+        nombre:'otro',
+        tipo:'texto'
     },
     {
         placeholder:'Accedido',
-        nombre:'accesioned'
+        nombre:'fecha_de_acceso',
+        tipo:'fecha'
     },
     {
         placeholder:'DOI',
-        nombre:'doi'
+        nombre:'DOI',
+        tipo:'texto'
     },
     {
         placeholder:'Tipo documento',
-        nombre:'document'
+        nombre:'tipo_de_documento',
+        tipo:'texto'
     },
     {
         placeholder:'Declaración',
-        nombre:'statement'
+        nombre:'declaración_de_derechos',
+        tipo:'texto'
     },
     {
         placeholder:'Editor',
-        nombre:'editor'
+        nombre:'editor',
+        tipo:'texto'
     },
     {
         placeholder:'Palabras claves',
-        nombre:'keywords'
+        nombre:'palabras_clave',
+        tipo:'texto'
     },
     {
         placeholder:'Estado',
-        nombre:'status'
+        nombre:'estado',
+        tipo:'texto'  
     },
     {
         placeholder:'Lugar cobertura',
-        nombre:'coverage_place'
+        nombre:'lugar_de_cobertura',
+        tipo:'texto'
     },
     {
         placeholder:'Fecha disponible',
-        nombre:'date_avalaible'
+        nombre:'fecha_disponible',
+        tipo:'fecha'
     },
     {
         placeholder:'Titulo principal',
-        nombre:'main_title'
+        nombre:'titulo_principal',
+        tipo:'texto'
     },
     {
         placeholder:'Tipo colección',
-        nombre:'collection'
+        nombre:'tipo_de_colección',
+        tipo:'texto'
     },
     {
         placeholder:'Edición',
-        nombre:'edition'
+        nombre:'edition',
+        tipo:'texto'
     },
     {
         placeholder:'Corporautor',
-        nombre:'corporauthor'
+        nombre:'autor_corporativo',
+        tipo:'texto'
     },
     {
         placeholder:'Contenido',
-        nombre:'contents'
+        nombre:'contenido',
+        tipo:'texto'
     },
     {
         placeholder:'Clasificación',
-        nombre:'classification'
+        nombre:'clasificacion',
+        tipo:'texto'
     },
     {
         placeholder:'Pais cobertura',
-        nombre:'coverage_country'
+        nombre:'pais_de_cobertura',
+        tipo:'texto'
     },
     {
         placeholder:'Fecha publicación',
-        nombre:'date_publication'
+        nombre:'fecha_de_publicacion',
+        tipo:'fecha'
     },
     {
         placeholder:'Titulo alternativo',
-        nombre:'alternative_title'
+        nombre:'titulo_alternativo',
+        tipo:'texto'
     },
     {
         placeholder:'Editorial',
-        nombre:'publisher'
+        nombre:'editorial',
+        tipo:'texto'
     },
     {
         placeholder:'Uri relativo',
-        nombre:'relation_uri'
+        nombre:'URI_relacionado',
+        tipo:'texto'
     },
     {
         placeholder:'Contribuidor',
-        nombre:'contributor'
+        nombre:'contribuyente',
+        tipo:'texto'
     },
     {
         placeholder:'Especies',
-        nombre:'species'
+        nombre:'especie',
+        tipo:'texto'
     },
     {
         placeholder:'Tesauro',
-        nombre:'thesaurus'
+        nombre:'tesauro',
+        tipo:'texto'
     },
     {
         placeholder:'Codigo pais',
-        nombre:'countrycodes'
+        nombre:'codigos_de_pais',
+        tipo:'texto'
     },
     {
         placeholder:'Identificador uri',
-        nombre:'identifier_uri'
+        nombre:'identificador_URI',
+        tipo:'texto'
     },
     {
         placeholder:'Idioma',
-        nombre:'language'
+        nombre:'idioma',
+        tipo:'texto'
     },
     {
         placeholder:'Acceso a los derechos',
-        nombre:'rights_acces'
+        nombre:'derechos_de_acceso',
+        tipo:'texto'
     },
     {
         placeholder:'Publico destinatario',
-        nombre:'target_audience'
+        nombre:'audiencia_objetivo',
+        tipo:'texto'
     }
 ]
 

@@ -7,4 +7,4 @@ export const BookData:IBook[]=[
     }
 ]
 
-export const baseApiUrl='http://172.27.14.252:8000'
+export const baseApiUrl='http://127.0.0.1:8000'

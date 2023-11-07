@@ -8,7 +8,7 @@ export const App = () => {
 
       <Route path='/' element={<MainPage/>}/>
 
-      <Route path='edit/:id' element={<EditPage/>}/>
+      <Route path='edit' element={<EditPage/>}/>
       <Route path='/*' element={<Navigate to='/'/>}/>
 
     </Routes>

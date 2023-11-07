@@ -13,7 +13,7 @@ export const BoxArea = () => {
 
   const {autoResizeTextArea,showOverflow}=useUI();
 
-  const {onAddMessage,indice,activeBookTalk,getRelatedBooks}=useChat();
+  const {onAddMessage,indice,activeBookTalk,}=useChat();
 
   const  ButtonRef:RefObject<HTMLButtonElement>=useRef(null);
 
@@ -28,8 +28,6 @@ export const BoxArea = () => {
   const onSubmitMessage=async(evento:FormEvent<HTMLFormElement>)=>{
     
       evento.preventDefault();
-
-      if(indice>3 && Object.keys(activeBookTalk).length<=0) await getRelatedBooks();
 
       onAddMessage(data);
       onResetValues();

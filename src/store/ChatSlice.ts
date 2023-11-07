@@ -21,6 +21,8 @@ export const ChatSlice = createSlice({
         activeBookTalk:{} as IBook,
         status:false,
         answersContext:[] as string[],
+        indice:0,
+        metadaDataBook:{}
     },
     reducers: {
          addMessage:(state,{payload}:{payload:mensaje})=>{
@@ -53,9 +55,16 @@ export const ChatSlice = createSlice({
          deleteAnswersContext:(state)=>{
             state.answersContext=[];
          },
+         onSetIndice:(state,{payload})=>{
+            state.indice=payload;
+         },
+         setMetadaDataBook:(state,{payload})=>{
+            state.metadaDataBook=payload;
+         }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { addMessage,setBooks,EditMessage,SetBookToTalk,changeStatus,addAnswerContex,deleteAnswersContext } = ChatSlice.actions;
+export const { addMessage,setBooks,EditMessage,SetBookToTalk,changeStatus,addAnswerContex,deleteAnswersContext
+,onSetIndice,setMetadaDataBook } = ChatSlice.actions;
