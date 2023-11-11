@@ -1,6 +1,5 @@
-
 import '../index.css'
-import { DataInputs, InputData} from "../helpers/DataInputs";
+import { DataInputs} from "../helpers/DataInputs";
 import {useForm} from 'react-hook-form'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useChat } from "../Hooks/useChat";
@@ -29,7 +28,7 @@ export const EditPage = () => {
   return (
     <form onSubmit={handleSubmit(onSubmitMetadatos)} className="w-[100%] flex flex-col gap-2 min-h-screen bg-[#F3F4F6] items-center justify-center">
         <h1 className="font-roboto font-semibold text-4xl mt-4 w-[100%] text-center text-[#383838] text-ellipsis">Editar metadatos libro {metadaDataBook.titulo_principal}</h1>
-        <div  className="w-[95%] gap-2 flex flex-wrap items-center  justify-center">
+        <div  className="w-fit gap-2 flex flex-wrap items-center  justify-center">
             {
                 DataInputs.map(input=>(
                         <div key={input.placeholder} className="input-group">
@@ -46,7 +45,7 @@ export const EditPage = () => {
         </div>
         <div className="w-[92%] flex justify-end">
             <button disabled={status}
-            className="font-roboto py-2 font-bold text-base shadow-md rounded-lg px-8 
+            className="font-roboto py-2 mb-1 font-bold text-base shadow-md rounded-lg px-8 
             bg-[#3366CC] text-white disabled:opacity-50 enabled:opacity-100">Enviar</button>
         </div>
     </form>

@@ -29,7 +29,7 @@ export const ordernarMetaDataSalida=(data:any)=>{
 
 export const formatearFecha1=(fechaPdf:string)=>{
 
-    if(fechaPdf.length<=0) return "";
+    if(!fechaPdf) return "";
 
     const año = fechaPdf.substring(2, 6);
     const mes = fechaPdf.substring(6, 8);

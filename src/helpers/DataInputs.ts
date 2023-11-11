@@ -40,7 +40,7 @@ export const DataInputs:InputI[]=
     },
     {
         placeholder:'Declaración',
-        nombre:'declaración_de_derechos',
+        nombre:'declaracion_de_derechos',
         tipo:'texto'
     },
     {
@@ -75,7 +75,7 @@ export const DataInputs:InputI[]=
     },
     {
         placeholder:'Tipo colección',
-        nombre:'tipo_de_colección',
+        nombre:'tipo_de_coleccion',
         tipo:'texto'
     },
     {

@@ -1,6 +1,5 @@
 import { IBook } from "../interfaces/ChatInterfaces";
 import ChatApi from "../api/ChatApi";
-import { baseApiUrl } from "../helpers/BookData";
 
 export const getMessageFromBot=async(pregunta:string,contexto:string):Promise<string | boolean>=>{
 
@@ -12,7 +11,7 @@ export const getMessageFromBot=async(pregunta:string,contexto:string):Promise<st
         }
 
 
-        const {data}=await ChatApi.post(`${baseApiUrl}/question`,body);
+        const {data}=await ChatApi.post(`/question`,body);
 
         return data;
 
@@ -29,7 +28,7 @@ export const getContextBook=async(id:string):Promise<string | null>=>{
 
     try{
 
-        const {data}=await ChatApi.post<string>(`${baseApiUrl}/getContextById`,{id});
+        const {data}=await ChatApi.post<string>(`/getContextById`,{id});
 
         return data;
 
@@ -48,7 +47,7 @@ export const relatedBooks=async(respuestas:string[]):Promise<IBook[]>=>{
     
     try{
 
-        const {data}=await ChatApi.post<IBook[]>(`${baseApiUrl}/filterByContent`,body);
+        const {data}=await ChatApi.post<IBook[]>(`/filterByContent`,body);
 
         return data;
 

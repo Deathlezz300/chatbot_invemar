@@ -6,7 +6,6 @@ import { DataMessageQuestions } from "../helpers/MessageData";
 import ChatApi from "../api/ChatApi";
 import { getBaseObjects } from "../helpers/getBaseObjects";
 import { getContextBook, getMessageFromBot, relatedBooks } from "../services/getMessageFromBot";
-import { baseApiUrl } from "../helpers/BookData";
 import { ordenarLlegadaMetada, ordernarMetaDataSalida } from '../helpers/formatMetaData';
 
 interface IUsechat{
@@ -48,10 +47,10 @@ export const useChat=():IUsechat=>{
 
             if(indice+1===4){
 
-                console.log("Hola");
 
                 const Books=await relatedBooks(answersContext);
 
+                if(!Array.isArray(Books)) return ;
 
                 dispatch(setBooks([...libros,...Books]))
             }
@@ -81,7 +80,7 @@ export const useChat=():IUsechat=>{
             const file=new FormData();
             file.append('file',archivo);
 
-            const {data}=await ChatApi.post(`${baseApiUrl}/upload`,file,{
+            const {data}=await ChatApi.post(`/upload`,file,{
                 headers:{
                     "Content-Type":'multipart/form-data'
                 }
@@ -138,9 +137,9 @@ export const useChat=():IUsechat=>{
 
             const data=ordernarMetaDataSalida(Metadata);
 
-            console.log(data);
+            data.resumen_HTML=data.resumen;
 
-            const res=await ChatApi.post(`${baseApiUrl}/saveMetadata`,data);
+            const res=await ChatApi.post(`/saveMetadata`,data);
 
             console.log(res.data);
 
