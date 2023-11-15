@@ -60,10 +60,11 @@ export const useChat=():IUsechat=>{
             return;
         }
 
-        const getAnswer=await getMessageFromBot(texto,activeBookTalk.context as string);
+        let getAnswer=await getMessageFromBot(texto,activeBookTalk.context as string);
 
         console.log(getAnswer)
 
+        if(!getAnswer) getAnswer='No disponible';
 
         // messaToStorageChabot.texto=getAnswer as string;
 
